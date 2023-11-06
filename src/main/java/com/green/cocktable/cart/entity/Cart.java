@@ -40,7 +40,7 @@ public class Cart {
     @Column(name = "PRODUCT_COUNT")
     private int count;
 
-    @Column(name = "CANCELL_YN")
+    @Column(name = "CANCEL_YN")
     private char cancelYn;
 
     @Override
