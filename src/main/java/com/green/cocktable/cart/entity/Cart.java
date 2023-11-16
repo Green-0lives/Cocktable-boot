@@ -1,21 +1,19 @@
 package com.green.cocktable.cart.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import com.green.cocktable.product.entity.ProductOption;
+import com.green.cocktable.product.entity.ProductPrice;
+import lombok.*;
 import org.hibernate.annotations.DynamicInsert;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
+@ToString
 @Entity
 @Table(name = "TBL_COCK_CART")
 @DynamicInsert
@@ -34,6 +32,9 @@ public class Cart {
     @Column(name = "TABLE_CODE")
     private String tableCode;
 
+    @Column(name = "ITEM_CODE")
+    private int itemCode;
+
     @Column(name = "ADD_DATE")
     private Date addDate;
 
@@ -43,16 +44,12 @@ public class Cart {
     @Column(name = "CANCEL_YN")
     private char cancelYn;
 
-    @Override
-    public String toString() {
-        return "Cart{" +
-                "cartCode='" + cartCode + '\'' +
-                ", productCode='" + productCode + '\'' +
-                ", optionCode='" + optionCode + '\'' +
-                ", tableCode='" + tableCode + '\'' +
-                ", addDate=" + addDate +
-                ", count=" + count +
-                ", cancelYn=" + cancelYn +
-                '}';
-    }
+    @OneToMany
+    @JoinColumn(name = "PRODUCT_CODE")
+    private List<ProductPrice> products;
+
+    @OneToMany
+    @JoinColumn(name = "PRODUCT_CODE")
+    private List<ProductOption> options;
+
 }
