@@ -33,6 +33,13 @@ public class ProductController {
         return ResponseEntity.ok().body(new ResponseDTO(HttpStatus.OK, "조회성공",(Object) productList));
     }
 
+    @Operation(summary = "단일 상품 조회 요청", description = "단일 상품을 조회하여 가지고 옵니다.", tags = {"Product"})
+    @GetMapping("/product/{categoryCode}/{productCode}")
+    public ResponseEntity<ResponseDTO> selectProductInfo(@PathVariable String categoryCode, @PathVariable String productCode) {
+
+        return ResponseEntity.ok().body(new ResponseDTO(HttpStatus.OK, "조회성공",productService.selectProductInfo(categoryCode, productCode)));
+    }
+
     @Operation(summary = "와인 상품 리스트 조회 요청", description = "와인 상품 리스트를 조회하여 가지고 옵니다.", tags = {"Product"})
     @GetMapping("/wineList/{categoryCode}")
     public ResponseEntity<ResponseDTO> wineListAllPrint(@PathVariable String categoryCode) {

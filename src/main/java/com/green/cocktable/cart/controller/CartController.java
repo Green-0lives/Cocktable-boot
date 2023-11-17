@@ -7,10 +7,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -34,4 +31,12 @@ public class CartController {
         return ResponseEntity.ok().body(new ResponseDTO(HttpStatus.OK, "조회성공",(Object) cartList));
 
     }
+
+    @Operation(summary = "장바구니 상품 추가 요청", description = "장바구니에 선택한 상품을 추가합니다.", tags = {"Cart"})
+    @PostMapping(value = "/cart/addItem")
+    public ResponseEntity<ResponseDTO> addCartItem(@ModelAttribute CartDTO cartDTO) {
+
+        return ResponseEntity.ok().body(new ResponseDTO(HttpStatus.OK, "신규 장바구니 상품 추가 성공", cartService.addCartItem(cartDTO)));
+    }
+
 }

@@ -80,6 +80,26 @@ public class ProductService {
         return productDTOList;
     }
 
+    /* 단일 상품 조회 */
+    public ProductDTO selectProductInfo(String categoryCode, String productCode) {
+
+        Product product = productRepository.findByProductCodeAndSalesYn(productCode, 'Y');
+
+        String imageUrl = PRODUCT_IMAGE_URL + getCategoryImageSubdirectory(categoryCode);
+
+        List<ProductImage> images = productImageRepository.findByProductCodeAndImageDeleteYn(product.getProductCode(), 'N');
+
+        ProductDTO productDTO = modelMapper.map(product, ProductDTO.class);
+        productDTO.setProductIMGList(images.stream()
+                .map(image -> {
+                    image.setImageLocation(imageUrl + image.getImageChangeName() + image.getImageType());
+                    return modelMapper.map(image, ProductImageDTO.class);
+                })
+                .collect(Collectors.toList()));
+
+        return productDTO;
+    }
+
     /* 와인 상품 리스트 조회 */
     public List<ProductAndWineInfoDTO> wineList(String categoryCode) {
 

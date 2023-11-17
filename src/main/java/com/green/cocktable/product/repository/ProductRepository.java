@@ -9,4 +9,6 @@ public interface ProductRepository extends JpaRepository<Product, String> {
 
     /* 상품리스트 가져오기 (삭제 표시된 상품은 제외) */
     List<Product> findByCategoryCodeAndSalesYn(String categoryCode, char salesYn);
+
+    Product findByProductCodeAndSalesYn(String productCode, char salesYn);
 }
