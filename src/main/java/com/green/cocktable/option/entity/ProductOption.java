@@ -1,4 +1,4 @@
-package com.green.cocktable.product.entity;
+package com.green.cocktable.option.entity;
 
 import com.green.cocktable.cart.entity.Cart;
 import lombok.*;

@@ -1,6 +1,6 @@
 package com.green.cocktable.cart.entity;
 
-import com.green.cocktable.product.entity.ProductOption;
+import com.green.cocktable.option.entity.ProductOption;
 import com.green.cocktable.product.entity.ProductPrice;
 import lombok.*;
 import org.hibernate.annotations.DynamicInsert;

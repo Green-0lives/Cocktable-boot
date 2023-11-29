@@ -1,4 +1,4 @@
-package com.green.cocktable.product.dto;
+package com.green.cocktable.option.dto;
 
 import lombok.*;
 

@@ -1,6 +1,6 @@
 package com.green.cocktable.cart.dto;
 
-import com.green.cocktable.product.dto.ProductOptionDTO;
+import com.green.cocktable.option.dto.ProductOptionDTO;
 import com.green.cocktable.product.dto.ProductPriceDTO;
 import lombok.*;
 
